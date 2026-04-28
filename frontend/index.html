@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Haven</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand">
+      <i class="fas fa-book-open"></i>
+      <span><em>Book Haven</em></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="borrowed.html" id="myBooksLink" style="display:none">My Books</a></li>
+      <li><a href="complaint.html">Complaints</a></li>
+      <li id="adminNavItem" style="display:none"><a href="admin.html">Admin Panel</a></li>
+    </ul>
+    <div class="nav-auth" id="navAuth">
+      <a href="login.html" class="btn-outline">Login</a>
+      <a href="register.html" class="btn-fill">Register</a>
+    </div>
+    <div class="nav-user" id="navUser" style="display:none">
+      <span class="user-greeting">Hello, <strong id="userNameDisplay"></strong></span>
+      <button onclick="logout()" class="btn-outline">Logout</button>
+    </div>
+    <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Welcome to the future of reading</p>
+      <h1 class="hero-title">Discover <em>Worlds</em><br/>Between Pages</h1>
+      <p class="hero-sub">Browse thousands of books, borrow, read, and return — all in one elegant place.</p>
+      <div class="hero-actions">
+        <a href="books.html" class="btn-hero-primary">Explore Books <i class="fas fa-arrow-right"></i></a>
+        <a href="register.html" class="btn-hero-ghost">Join Free</a>
+      </div>
+    </div>
+    <div class="hero-float-books">
+      <div class="float-card fc1"><i class="fas fa-book"></i><span>Fiction</span></div>
+      <div class="float-card fc2"><i class="fas fa-flask"></i><span>Science</span></div>
+      <div class="float-card fc3"><i class="fas fa-landmark"></i><span>History</span></div>
+      <div class="float-card fc4"><i class="fas fa-brain"></i><span>Philosophy</span></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-bar">
+    <div class="stat"><strong>2,400+</strong><span>Books</span></div>
+    <div class="stat"><strong>800+</strong><span>Members</span></div>
+    <div class="stat"><strong>12</strong><span>Categories</span></div>
+    <div class="stat"><strong>Free</strong><span>Access</span></div>
+  </section>
+
+  <!-- FEATURED BOOKS -->
+  <section class="featured-section">
+    <div class="section-header">
+      <h2>Featured <em>Books</em></h2>
+      <a href="books.html" class="see-all">View All <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="books-grid" id="featuredBooks"></div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works">
+    <h2>How It <em>Works</em></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+        <h3>Register</h3>
+        <p>Create your free account in seconds to unlock borrowing privileges.</p>
+      </div>
+      <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="step">
+        <div class="step-icon"><i class="fas fa-search"></i></div>
+        <h3>Browse</h3>
+        <p>Explore our curated collection across dozens of categories.</p>
+      </div>
+      <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="step">
+        <div class="step-icon"><i class="fas fa-book-reader"></i></div>
+        <h3>Borrow & Read</h3>
+        <p>Borrow books and read them directly in your browser.</p>
+      </div>
+      <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="step">
+        <div class="step-icon"><i class="fas fa-undo"></i></div>
+        <h3>Return</h3>
+        <p>Return within 10 days. Late returns incur a fine; persistent defaults block access.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand"><i class="fas fa-book-open"></i>  Library</div>
+    <p>© 2026 Library. All rights reserved.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    renderFeaturedBooks();
+    updateNav();
+  </script>
+</body>
+</html>

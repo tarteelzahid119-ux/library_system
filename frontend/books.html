@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Haven</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand"><i class="fas fa-book-open"></i><span> <em>Book Haven</em></span></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="books.html" class="active">Books</a></li>
+      <li><a href="borrowed.html" id="myBooksLink" style="display:none">My Books</a></li>
+      <li><a href="complaint.html">Complaints</a></li>
+      <li id="adminNavItem" style="display:none"><a href="admin.html">Admin Panel</a></li>
+    </ul>
+    <div class="nav-auth" id="navAuth">
+      <a href="login.html" class="btn-outline">Login</a>
+      <a href="register.html" class="btn-fill">Register</a>
+    </div>
+    <div class="nav-user" id="navUser" style="display:none">
+      <span class="user-greeting">Hello, <strong id="userNameDisplay"></strong></span>
+      <button onclick="logout()" class="btn-outline">Logout</button>
+    </div>
+    <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+  </nav>
+
+  <div class="page-header">
+    <h1>Our <em>Collection</em></h1>
+    <p>Browse, read, and borrow from our curated library</p>
+  </div>
+
+  <section class="books-page-section">
+    <div class="books-toolbar">
+      <div class="search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search by title or author..." oninput="filterBooks()"/>
+      </div>
+      <select id="categoryFilter" onchange="filterBooks()">
+        <option value="">All Categories</option>
+        <option value="Fiction">Fiction</option>
+        <option value="Science">Science</option>
+        <option value="History">History</option>
+        <option value="Philosophy">Philosophy</option>
+        <option value="Technology">Technology</option>
+        <option value="Biography">Biography</option>
+      </select>
+    </div>
+    <div class="books-grid" id="allBooksGrid"></div>
+  </section>
+
+  <!-- Book Modal -->
+  <div class="modal-overlay" id="bookModal" style="display:none">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+      <div class="modal-cover" id="modalCover"></div>
+      <div class="modal-info">
+        <h2 id="modalTitle"></h2>
+        <p class="modal-author" id="modalAuthor"></p>
+        <span class="modal-cat" id="modalCat"></span>
+        <p class="modal-desc" id="modalDesc"></p>
+        <div class="modal-actions">
+          <a id="readBtn" href="#" target="_blank" class="btn-fill"><i class="fas fa-book-open"></i> Read Online</a>
+          <button id="borrowBtn" onclick="borrowBook()" class="btn-outline"><i class="fas fa-hand-holding"></i> Borrow</button>
+        </div>
+        <p class="modal-status" id="modalStatus"></p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-brand"><i class="fas fa-book-open"></i> Library</div>
+    <p>© 2026 Library. All rights reserved.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>renderAllBooks(); updateNav();</script>
+</body>
+</html>

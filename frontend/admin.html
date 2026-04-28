@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel — Book Haven </title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand"><i class="fas fa-book-open"></i><span> <em>Book Haven</em></span></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="complaint.html">Complaints</a></li>
+      <li><a href="admin.html" class="active">Admin Panel</a></li>
+    </ul>
+    <div class="nav-auth" id="navAuth">
+      <a href="login.html" class="btn-outline">Login</a>
+    </div>
+    <div class="nav-user" id="navUser" style="display:none">
+      <span class="user-greeting">Hello, <strong id="userNameDisplay"></strong></span>
+      <button onclick="logout()" class="btn-outline">Logout</button>
+    </div>
+    <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+  </nav>
+
+  <div class="page-header">
+    <h1>Admin <em>Panel</em></h1>
+    <p>Manage the library collection, users, and complaints</p>
+  </div>
+
+  <section class="admin-section">
+    <!-- Stats -->
+    <div class="admin-stats">
+      <div class="a-stat"><i class="fas fa-book"></i><div><strong id="totalBooks">0</strong><span>Books</span></div></div>
+      <div class="a-stat"><i class="fas fa-users"></i><div><strong id="totalUsers">0</strong><span>Users</span></div></div>
+      <div class="a-stat"><i class="fas fa-hand-holding"></i><div><strong id="totalBorrowed">0</strong><span>Borrowed</span></div></div>
+      <div class="a-stat"><i class="fas fa-exclamation-circle"></i><div><strong id="totalComplaints">0</strong><span>Complaints</span></div></div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="admin-tabs">
+      <button class="tab-btn active" onclick="showTab('addBook')"><i class="fas fa-plus-circle"></i> Add Book</button>
+      <button class="tab-btn" onclick="showTab('manageBooks')"><i class="fas fa-books"></i> Manage Books</button>
+      <button class="tab-btn" onclick="showTab('manageUsers')"><i class="fas fa-users"></i> Users</button>
+      <button class="tab-btn" onclick="showTab('manageComplaints')"><i class="fas fa-comment-dots"></i> Complaints</button>
+    </div>
+
+    <!-- Add Book Tab -->
+    <div class="tab-content active" id="addBook">
+      <div class="admin-card">
+        <h2><i class="fas fa-plus"></i> Add New Book</h2>
+        <div id="addBookMsg" class="auth-msg" style="display:none"></div>
+        <div class="admin-form-grid">
+          <div class="form-group">
+            <label>Title</label>
+            <div class="input-wrap"><i class="fas fa-book"></i>
+              <input type="text" id="bookTitle" placeholder="Book title"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Author</label>
+            <div class="input-wrap"><i class="fas fa-pen-nib"></i>
+              <input type="text" id="bookAuthor" placeholder="Author name"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <div class="input-wrap"><i class="fas fa-tag"></i>
+              <select id="bookCategory">
+                <option value="Fiction">Fiction</option>
+                <option value="Science">Science</option>
+                <option value="History">History</option>
+                <option value="Philosophy">Philosophy</option>
+                <option value="Technology">Technology</option>
+                <option value="Biography">Biography</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Cover Color (Hex)</label>
+            <div class="input-wrap"><i class="fas fa-palette"></i>
+              <input type="text" id="bookColor" placeholder="#e74c3c" value="#2c3e50"/>
+            </div>
+          </div>
+          <div class="form-group full-span">
+            <label>Description</label>
+            <textarea id="bookDesc" rows="3" placeholder="Brief description..."></textarea>
+          </div>
+          <div class="form-group full-span">
+            <label>Read Link (URL to PDF or page)</label>
+            <div class="input-wrap"><i class="fas fa-link"></i>
+              <input type="url" id="bookLink" placeholder="https://example.com/book.pdf"/>
+            </div>
+          </div>
+        </div>
+        <button class="btn-fill" onclick="adminAddBook()"><i class="fas fa-plus"></i> Add Book</button>
+      </div>
+    </div>
+
+    <!-- Manage Books Tab -->
+    <div class="tab-content" id="manageBooks">
+      <div class="admin-card">
+        <h2><i class="fas fa-list"></i> All Books</h2>
+        <div class="admin-books-list" id="adminBooksList"></div>
+      </div>
+    </div>
+
+    <!-- Manage Users Tab -->
+    <div class="tab-content" id="manageUsers">
+      <div class="admin-card">
+        <h2><i class="fas fa-users"></i> Registered Users</h2>
+        <div class="admin-users-list" id="adminUsersList"></div>
+      </div>
+    </div>
+
+    <!-- Complaints Tab -->
+    <div class="tab-content" id="manageComplaints">
+      <div class="admin-card">
+        <h2><i class="fas fa-comment-dots"></i> Complaints</h2>
+        <div class="admin-complaints-list" id="adminComplaintsList"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-brand"><i class="fas fa-book-open"></i>Book Haven</div>
+    <p>© 2025  Library. All rights reserved.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    requireAdmin();
+    updateNav();
+    loadAdminStats();
+    renderAdminBooks();
+
+    function showTab(id) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+      if(id === 'manageBooks') renderAdminBooks();
+      if(id === 'manageUsers') renderAdminUsers();
+      if(id === 'manageComplaints') renderAdminComplaints();
+    }
+  </script>
+</body>
+</html>

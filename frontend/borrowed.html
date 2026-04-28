@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Haven</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand"><i class="fas fa-book-open"></i><span> <em>Book Haven</em></span></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="borrowed.html" class="active" id="myBooksLink">My Books</a></li>
+      <li><a href="complaint.html">Complaints</a></li>
+      <li id="adminNavItem" style="display:none"><a href="admin.html">Admin Panel</a></li>
+    </ul>
+    <div class="nav-auth" id="navAuth">
+      <a href="login.html" class="btn-outline">Login</a>
+      <a href="register.html" class="btn-fill">Register</a>
+    </div>
+    <div class="nav-user" id="navUser" style="display:none">
+      <span class="user-greeting">Hello, <strong id="userNameDisplay"></strong></span>
+      <button onclick="logout()" class="btn-outline">Logout</button>
+    </div>
+    <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+  </nav>
+
+  <div class="page-header">
+    <h1>My <em>Borrowed Books</em></h1>
+    <p>Track your borrowing history and due dates</p>
+  </div>
+
+  <section class="borrowed-section">
+    <div id="blockedAlert" class="alert-blocked" style="display:none">
+      <i class="fas fa-ban"></i>
+      <strong>Account Blocked:</strong> You have unpaid fines or overdue books beyond the grace period. Please contact the library admin to restore access.
+    </div>
+    <div id="borrowedList" class="borrowed-list"></div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-brand"><i class="fas fa-book-open"></i> Library</div>
+    <p>© 2026 Library. All rights reserved.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    requireLogin();
+    renderBorrowedBooks();
+    updateNav();
+  </script>
+</body>
+</html>
