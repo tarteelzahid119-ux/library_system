@@ -1,4 +1,4 @@
-# 📚 Lumina Library — Setup Guide
+# 📚 bookhaven— Setup Guide
 
 ## Project Structure
 ```
